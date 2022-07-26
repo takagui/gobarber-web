@@ -5,8 +5,8 @@ import GlobalStyle from './styles/global';
 const App = () => {
   return (
     <>
-      {/* <SignIn /> */}
-      <SignUp />
+      <SignIn />
+      {/* <SignUp /> */}
       <GlobalStyle />
     </>
   );
