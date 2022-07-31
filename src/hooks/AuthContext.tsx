@@ -15,6 +15,7 @@ interface ISignInCredentials {
 interface IAuthContext {
   user: object;
   signIn: (credentials: ISignInCredentials) => Promise<void>;
+  signOut: () => void;
 }
 
 interface IAuthProvider {
@@ -54,8 +55,15 @@ const AuthProvider = ({ children }: IAuthProvider) => {
     setData({ user, token });
   }, []);
 
+  const signOut = useCallback(() => {
+    localStorage.removeItem('@GoBarber:user');
+    localStorage.removeItem('@GoBarber:token');
+
+    setData({} as IAuthState);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn }}>
+    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )
