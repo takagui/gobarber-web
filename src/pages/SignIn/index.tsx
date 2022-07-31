@@ -23,7 +23,9 @@ interface ISignInFormData {
 const SignIn = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { signIn } = useContext(AuthContext);
+  const { user, signIn } = useContext(AuthContext);
+
+  console.log(user);
 
   const handleSubmit = useCallback(async (data: ISignInFormData) => {
     try {
