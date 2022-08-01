@@ -45,11 +45,12 @@ const SignIn = () => {
         password: data.password,
       });
     } catch (error: any) {
-      console.log({error});
+      if (error instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(error);
 
-      const errors = getValidationErrors(error);
+        formRef.current?.setErrors(errors);
+      }
 
-      formRef.current?.setErrors(errors);
     }
   }, [signIn]);
 
