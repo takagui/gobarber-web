@@ -13,6 +13,7 @@ interface IToastMessage {
 
 interface IToast {
   message: IToastMessage;
+  style: object;
 }
 
 const icons = {
@@ -21,7 +22,7 @@ const icons = {
   success: <FiCheckCircle size={24} />,
 }
 
-const Toast = ({message}: IToast) => {
+const Toast = ({ message, style }: IToast) => {
   const { removeToast } = useToast();
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const Toast = ({message}: IToast) => {
   }, [removeToast, message.id]);
 
   return (
-    <Container type={message.type} hasDescription={!!message.description} key={message.id}>
+    <Container type={message.type} hasDescription={!!message.description} key={message.id} style={style}>
       {icons[message.type || 'info']}
 
       <div>
