@@ -1,4 +1,5 @@
 import { useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
@@ -13,6 +14,7 @@ import { getValidationErrors } from '../../utils/getValidationErrors';
 import {
   Container,
   Content,
+  AnimationContainer,
   Background,
 } from './styles';
 
@@ -64,25 +66,27 @@ const SignIn = () => {
   return (
     <Container>
       <Content>
-        <img src={logoImg} alt="GoBarber logo" />
+        <AnimationContainer>
+          <img src={logoImg} alt="GoBarber logo" />
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Faça seu logon</h1>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Faça seu logon</h1>
 
-          <Input name="email" icon={FiMail} type="email" placeholder="E-mail" />
-          <Input name="password" icon={FiLock} type="password" placeholder="Senha"/>
+            <Input name="email" icon={FiMail} type="email" placeholder="E-mail" />
+            <Input name="password" icon={FiLock} type="password" placeholder="Senha"/>
 
-          <Button type="submit">
-            Entrar
-          </Button>
+            <Button type="submit">
+              Entrar
+            </Button>
 
-          <a href="forgot">Esqueci minha senha</a>
-        </Form>
+            <a href="forgot">Esqueci minha senha</a>
+          </Form>
 
-        <a href="#">
-          <FiLogIn size={16} />
-          Criar conta
-        </a>
+          <Link to="/signup">
+            <FiLogIn size={16} />
+            Criar conta
+          </Link>
+        </AnimationContainer>
       </Content>
       <Background />
     </Container>

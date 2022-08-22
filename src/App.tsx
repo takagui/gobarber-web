@@ -1,19 +1,18 @@
-import { SignIn } from './pages/SignIn';
-import { SignUp } from './pages/SignUp';
-import GlobalStyle from './styles/global';
+import { BrowserRouter } from 'react-router-dom';
 
+import GlobalStyle from './styles/global';
 import { AppProvider } from './hooks';
+import { Router } from './routes';
 
 const App = () => {
   return (
-    <>
+    <BrowserRouter>
       <AppProvider>
-        <SignIn />
+        <Router />
       </AppProvider>
-      {/* <SignUp /> */}
 
       <GlobalStyle />
-    </>
+    </BrowserRouter>
   );
 }
 
