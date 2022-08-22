@@ -1,5 +1,5 @@
 import { useRef, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
@@ -28,6 +28,7 @@ const SignIn = () => {
 
   const { signIn } = useAuth();
   const { addToast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = useCallback(async (data: ISignInFormData) => {
     try {
@@ -48,6 +49,8 @@ const SignIn = () => {
         email: data.email,
         password: data.password,
       });
+
+      navigate('/dashboard');
     } catch (error: any) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error);
@@ -61,7 +64,7 @@ const SignIn = () => {
         description: 'Ocorreu um erro ao fazer login, cheque as credenciais.',
       });
     }
-  }, [signIn, addToast]);
+  }, [signIn, addToast, navigate]);
 
   return (
     <Container>
